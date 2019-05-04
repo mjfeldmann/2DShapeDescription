@@ -6,13 +6,13 @@ This code is specifically designed to work on binary images of strawberries wher
 The bulk of this project coming soon.
 
 1. Segmentation
-    a.  Lists the following: ImageJ Macro
-    b. Description: Batch segments all images within a directory using two different segmentators
-    c. File name: BatchSIOX_multiFruit.ijm
-    d. Operating system(s): Platform independent
-    e. Programming language: ImageJ
-    f. Other requirements: Two saved SIOX segmentators
-    g. License: MIT License
+    a.  Lists the following: ImageJ Macro  
+    b. Description: Batch segments all images within a directory using two different segmentators  
+    c. File name: BatchSIOX_multiFruit.ijm  
+    d. Operating system(s): Platform independent  
+    e. Programming language: ImageJ  
+    f. Other requirements: Two saved SIOX segmentators  
+    g. License: MIT License  
 
 2. Cropping and Edge Addition
     >Lists the following: R code
