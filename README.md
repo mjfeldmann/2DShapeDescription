@@ -14,10 +14,10 @@ The bulk of this project coming soon.
     >Other requirements: Not Applicable
     >License: MIT License  
       
-    >We used imageJ to train two different SIOX segmentators using "BatchSIOX_multiFruit.ijm", referred to as "segmentator-NormalMulti.siox" and "segmentator-LightMulti.siox".
-    > We did this to account for the fact that strawberries with very light color were not properly segmented using a segmentator trained on protoypically red strawberries.
-    > Both generated images were averaged using "binary_image_mean.R" and pixel values = 0.5 were set to 0.
-    > Images were then checked for defects and holes in the segments. Holes were closed in ImageJ by hand using the 'Wand (tracing) tool".
+    We used imageJ to train two different SIOX segmentators using "BatchSIOX_multiFruit.ijm", referred to as "segmentator-NormalMulti.siox" and "segmentator-LightMulti.siox". 
+     We did this to account for the fact that strawberries with very light color were not properly segmented using a segmentator trained on protoypically red strawberries.
+     Both generated images were averaged using "binary_image_mean.R" and pixel values = 0.5 were set to 0. 
+     Images were then checked for defects and holes in the segments. Holes were closed in ImageJ by hand using the 'Wand (tracing) tool".
 
 2. Cropping and Edge Addition  
     >Lists the following: R code  
