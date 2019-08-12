@@ -18,9 +18,9 @@ The bulk of this project coming soon.
      Images were then checked for defects and holes in the segments. Holes were closed in ImageJ by hand using the 'Wand (tracing) tool".
 
 2. Cropping, Edge Addition , and Scaling
-    >Lists the following: R code  
-    >Description: Crops images based on positions of bounding rectangles and adds white pixels to the edges. Scales all images to 1000x1000 pixels. 
-    >File name: CropImages_ExtendBorders.R 
+    >Lists the following: R code    
+    >Description: Crops images based on positions of bounding box, adds white pixels, Scales all images to 1000x1000 pixels.   
+    >File name: CropImages_ExtendBorders.R   
     >Operating system(s): Platform independent  
     >Programming language: R  
 
@@ -29,19 +29,19 @@ The bulk of this project coming soon.
      As this step was done by hand, there is no code in this repository for this task. Since all of the fruit land in 1 or 3 positions in all of the images, given a consisten orientation, we could have written an imageJ macro, similar to the segmentation macro to do this.
 
 3. K-means Clustering  
-    >Lists the following: R code  
-    >Description: Flattens scaled binary images and performs K-means clustering. 
-    >File name: Kmeans_Clustering.R 
-    >Operating system(s): Platform independent  
-    >Programming language: R 
+    >Lists the following: R code    
+    >Description: Flattens scaled binary images and performs K-means clustering.   
+    >File name: Kmeans_Clustering.R   
+    >Operating system(s): Platform independent    
+    >Programming language: R   
 
     Each image is first resized to 100x100px. The images are then flattened into 10,000 element vectors.  
      Kmeans clustering is performed on this vector across all images.
 
 4. Modified K-means Clustering  
     >Lists the following: R code   
-    >Description: Rotates and flattens scaled binary images and performs K-means clustering. 
-    >File name: Mod_Kmeans_Clustering.R 
+    >Description: Rotates and flattens scaled binary images and performs K-means clustering.   
+    >File name: Mod_Kmeans_Clustering.R   
     >Operating system(s): Platform independent  
     >Programming language: R
 
@@ -50,7 +50,7 @@ The bulk of this project coming soon.
 
 5. Principal Progression of K Clusters
     >Lists the following: R code 
-    >Description: Takes the output from either Kmeans approach and returns a list containing the order of the factor levels. 
+    >Description: Takes the output from either Kmeans approach and returns a list containing the order of the factor levels.   
     >File name: PPKC.R  
     >Operating system(s): Platform independent   
     >Programming language: R 
@@ -59,7 +59,7 @@ The bulk of this project coming soon.
      Each cell is teh cluster assigned to a given image for a specific value of K.
 
 6. Cumulative Logit Mixed Models
-    >Lists the following: R code  
+    >Lists the following: R code    
     >Description: Estimates Heritability using a cumulative logit mixed model  
     >File name: VarComp_CLMM.R 
     >Operating system(s): Platform independent  
@@ -70,7 +70,7 @@ The bulk of this project coming soon.
 7. Elliptical Fourier Analysis with Momocs
     >Lists the following: R code  
     >Description: Performs EFA using the Momocs package in R  
-    >File name: EFA_Momocs.R  
+    >File name: EFA_Momocs.R   
     >Operating system(s): Platform independent  
     >Programming language: R  
 
@@ -135,7 +135,7 @@ The bulk of this project coming soon.
 14. Classification and Cross Validation
     >Lists the following: R code   
     >Description: SVM and LDA are used to perfom shape classificaiton.   
-    >File name: Validation_EXP.R
+    >File name: Validation_EXP.R  
     >Operating system(s): Platform independent    
     >Programming language: R
 
