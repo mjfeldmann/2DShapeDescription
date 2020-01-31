@@ -66,24 +66,6 @@ coo = append(coo,coo.21)
 coo = append(coo,coo.22)
 coo = append(coo,coo.23)
 
-#l=c()
-#for(i in 1:6874){
-#  l[i] = dim(coo[[i]])[1]
-#}
-#plot(l)
-
-#If using modified K means
-#KM.dat <- read.csv("~/Box/Desktop/Reading/Strawberry_Research/Heterosis/Salinas/Data/2018_Salinas_Fruit_Morph_KMA.csv")
-#k8 <- KM.dat[which(KM.dat$K8 == 6),]
-#
-#coo.rev = which(names(coo) %in% k8$label.z)
-#
-#for(i in coo.rev){
-#  print(i)
-#  coo[[i]][,1] = max(coo[[i]][,1]) - coo[[i]][,1]
-#  coo[[i]] = apply(coo[[i]],2,rev)
-#}
-
 strw <- Out(coo)
 
 coo_oscillo(strw[1], "efourier")

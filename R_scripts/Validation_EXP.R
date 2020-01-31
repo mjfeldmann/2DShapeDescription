@@ -36,17 +36,13 @@ library(cluster)
 library(mclust)
 library(tidyverse)
 library(e1071); library(MASS); library(cvTools)
+library(ggplot2); library(gridExtra)
 
-pics <- list.files(path = "~/Desktop/Reading/Strawberry_Research/Heterosis/Salinas/Data/Images/ReSized",
+pics <- list.files(path = "/Volumes/Elements/Desktop/Reading/Strawberry_Research/Heterosis/Salinas/Data/Images/ReSized",
                    full.names = TRUE)
 
 load_and_resize = function(path){image = load.image(path);resize(im = image,size_x = 100, size_y = 100)}
-
-# For Modification
-KM.dat <- read.csv("~/Box/Desktop/Reading/Strawberry_Research/Heterosis/Salinas/Data/2018_Salinas_Fruit_Morph_KMA.csv")
 #datt = read.csv("~/Box/Desktop/Reading/Strawberry_Research/Heterosis/Salinas/Data/2018_Salinas_Fruit_Morph.csv")
-
-k8 <- KM.dat$K8
 
 # list of 4D tensors
 list_of_images = lapply(pics, load_and_resize) 
@@ -54,12 +50,6 @@ list_of_images = lapply(pics, load_and_resize)
 # list of 2D tensors
 list_of_images.mat <- lapply(list_of_images, as.matrix) 
 levelplot(list_of_images.mat[[26]])
-
-# Modification of Kmeans: flips all K8_c6 
-for(i in which(k8==6)){
-  print(i)
-  list_of_images.mat[[i]] <- list_of_images.mat[[i]][100:1,]
-}
 
 image_matrix = do.call('cbind', lapply(list_of_images.mat, as.numeric))
 dim(image_matrix)
@@ -69,11 +59,11 @@ dim(image_matrix)
 
 wss.t = c()
 for(i in 1:10){
-  print(i)
+  print(paste0("Iteration ",i))
   k.max <- 10
   data <- image_matrix[sort(sample(c(1:6874),3437,replace = F)),]
   wss <- sapply(1:k.max, 
-                function(k){ kmeans(data, k)$tot.withinss})
+                function(k){ print(paste0("K = ",k));kmeans(data, k)$tot.withinss})
   wss.t =  c(wss.t,wss)
 }
 k = (c(rep(1:10,10)))
@@ -85,6 +75,16 @@ rsq = ((wss.t * (n-1)) / (wss.t[sub2] * (n - k)))
 aic = wss.t + 2 * 10000 * k
 bic = wss.t + log(3437) * 10000 * k
 
+fitmet = data.frame(k=as.factor(k), sub=sub,sbu2=sub2, wss.t=wss.t, rsq=rsq, aic=aic, bic=bic)
+
+wss.p = ggplot(data=fitmet, mapping=aes(x=k, y = wss.t/(max(wss.t)), group=sub)) + geom_point() + geom_line() + theme_bw() + xlab(label = "K") + ylab(label="Standardized Within Cluster Sum of Squares") + geom_vline(xintercept=4,lty=2,col="gray")
+rsq.p = ggplot(data=fitmet, mapping=aes(x=k, y = (rsq/(max(rsq))), group=sub)) + geom_point() + geom_line() + theme_bw() + xlab(label = "K") + ylab(label="1 - Standardized R Squared")+ geom_vline(xintercept=4,lty=2,col="gray")
+aic.p = ggplot(data=fitmet, mapping=aes(x=k, y = aic/(max(aic)), group=sub)) + geom_point() + geom_line() + theme_bw() + xlab(label = "K") + ylab(label="Standardized AIC")+ geom_vline(xintercept=4,lty=2,col="gray")
+bic.p = ggplot(data=fitmet, mapping=aes(x=k, y = bic/(max(bic)), group=sub)) + geom_point() + geom_line() + theme_bw() + xlab(label = "K") + ylab(label="Standardized BIC")+ geom_vline(xintercept=4,lty=2,col="gray")
+
+pdf("S3_optKclust.pdf", width=6.6, height=6.6, compress=F, pointsize = 10)
+grid.arrange(wss.p, rsq.p, aic.p, bic.p)
+dev.off()
 ###################################################################################################
 ###################################################################################################
 ###################################################################################################

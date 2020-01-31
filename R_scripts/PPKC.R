@@ -7,7 +7,7 @@
 ######################### category -- Principal Progression of K Clusters ################
 ##########################################################################################
 rm(list=ls())
-data <- read.csv("~/Box/Desktop/Reading/Strawberry_Research/1_UnsupervisedQuantization/Zenodo/Quantitative_Strawberry_Features.csv")
+data <- read.csv("~/Box/Desktop/Reading/Strawberry_Research/1_UnsupervisedQuantization/Zenodo/Fruit_image_data.csv")
 
 data$K2 <- as.factor(data$K2) # 1 2 
 data$K3 <- as.factor(data$K3) # 1 3 2
@@ -19,19 +19,9 @@ data$K8 <- as.factor(data$K8) # 6 2 1 5 3 8 4 7
 data$K9 <- as.factor(data$K9) # 5 3 2 1 8 7 9 4 6
 data$K10 <- as.factor(data$K10) # 9 2 1 3 8 10 7 5 6 4
 
-data$modK2 <- as.factor(data$modK2) # 1 2 
-data$modK3 <- as.factor(data$modK3) # 1 3 2
-data$modK4 <- as.factor(data$modK4) # 1 2 3 4
-data$modK5 <- as.factor(data$modK5) # 4 5 1 3 2
-data$modK6 <- as.factor(data$modK6) # 5 1 6 3 4 2
-data$modK7 <- as.factor(data$modK7) # 7 3 6 1 2 4 5
-data$modK8 <- as.factor(data$modK8) # 6 2 1 5 3 8 4 7
-data$modK9 <- as.factor(data$modK9) # 5 3 2 1 8 7 9 4 6
-data$modK10 <- as.factor(data$modK10) # 9 2 1 3 8 10 7 5 6 4
-
 colnames(data)
 
-dat = data[,c(428:436)]
+dat = data[,c(428:436)] #columns with clusters.
 
 PPKC=list()
 for(i in 2:ncol(dat)){
